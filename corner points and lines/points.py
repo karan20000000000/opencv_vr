@@ -42,24 +42,24 @@ def nearest_white_dist(target):
 import cv2
 import numpy as np
 
-img=cv2.imread('Photo.jpeg')
+img=cv2.imread('photo3morph.jpg')
 img = cv2.copyMakeBorder(img, 30, 30, 30, 30, cv2.BORDER_CONSTANT, value = (255,255,255))
 imgray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 gray=np.float32(imgray)
 
-#detecting and placing blue corners
-corners=cv2.goodFeaturesToTrack(gray, 100,0.01,10)
-corners=np.int0(corners)
-
 #threshold the imgray img, then use that to ignore redundant red points
-_, graythresh = cv2.threshold(imgray, 127, 255, cv2.THRESH_BINARY )
+_, graythresh = cv2.threshold(imgray, 30, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU )
 nonzero = cv2.findNonZero(graythresh)
+
+#detecting and placing blue corners
+corners=cv2.goodFeaturesToTrack(graythresh, 100, 0.15 ,10)
+corners=np.int0(corners)
 
 #vector stuff
 pointlist = []
 for corner in corners:
 	x,y=corner.ravel()
-	cv2.circle(img,(x,y),2,255,-1)
+	cv2.circle(img,(x,y),5,255,-1)
 	pointlist.append(Vector(x,y))
 	# print(x,y)
 
@@ -73,6 +73,10 @@ for i in pointlist:
 		if j is not i:
 			distarr.append((i.dist(j), j))
 	# temp = min(distarr)
+	# i.checked = True
+	# temp[1].checked = True
+	# pairs.append(i.group(temp[1]))
+
 	sortedPoints = sorted(distarr)
 	templist = []
 	for p in sortedPoints:
@@ -101,7 +105,7 @@ for pair in pairs:
 				continue
 
 			red.append((x,y))
-			cv2.circle(img,(x,y), 4, (0,0,255), -1)
+			cv2.circle(img,(x,y), 6, (0,0,255), -1)
 			# print(v, pair)
 
 # grouping
@@ -110,5 +114,5 @@ for pair in pairs:
 # 		if(traverse(vect,vect2)):
 # 			lines.append([vect, vect2])
 
-cv2.imwrite('Try2.jpg',img)
+cv2.imwrite('Try2.jpg',graythresh)
 cv2.destroyAllWindows()

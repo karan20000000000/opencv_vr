@@ -19,12 +19,23 @@ def is_mid_white(p1, p2, img):
 			cv2.circle(points.img, (col,row), 3, (255,255,0), -1)
 			return True
 	return False
+
+#lines = [(start, end), ...]
+lines = []
 for point in points.red:
 	for point2 in points.red:
 		if(point is not point2):
 			if(is_mid_white(point, point2, points.graythresh)):
 				continue
-			cv2.line(points.img,point,point2,(0,255,255),2)
+			cv2.line(points.img,point,point2,(0,150,255),2)
+			lines.append({"start":point,"end":point2})
+			print(point)
 
+dataDict = {}
+dataDict['walls'] = lines
+import json
+# print(json.dumps(dataDict))
+with open("data_file.json", "w") as write_file:
+    json.dump(dataDict, write_file, indent=1)
 
 cv2.imwrite('Try2.jpg',points.img)
