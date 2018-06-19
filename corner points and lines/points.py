@@ -114,5 +114,5 @@ for pair in pairs:
 # 		if(traverse(vect,vect2)):
 # 			lines.append([vect, vect2])
 
-cv2.imwrite('Try2.jpg',graythresh)
+cv2.imwrite('Try2.jpg',img)
 cv2.destroyAllWindows()
