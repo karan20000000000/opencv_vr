@@ -28,8 +28,7 @@ for point in points.red:
 			if(is_mid_white(point, point2, points.graythresh)):
 				continue
 			cv2.line(points.img,point,point2,(0,150,255),2)
-			lines.append({"start":point,"end":point2})
-			print(point)
+			lines.append({"start":point[::-1],"end":point2[::-1]})
 
 dataDict = {}
 dataDict['walls'] = lines
