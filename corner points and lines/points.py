@@ -42,7 +42,7 @@ def nearest_white_dist(target):
 import cv2
 import numpy as np
 
-img=cv2.imread('photo3morph.jpg')
+img=cv2.imread('Test2-1.jpg')
 img = cv2.copyMakeBorder(img, 30, 30, 30, 30, cv2.BORDER_CONSTANT, value = (255,255,255))
 imgray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 gray=np.float32(imgray)
