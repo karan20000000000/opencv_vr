@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import random
 
-img=cv2.imread('tilteddoor.png')
+img=cv2.imread('tilteddoor.jpg')
 imgray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 gray=np.float32(imgray)
 

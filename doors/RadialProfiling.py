@@ -5,7 +5,7 @@ import math
 import interpoltest
 
 
-img=cv2.imread('Rotated.jpg')
+img=cv2.imread('tilted.jpg')
 img = cv2.copyMakeBorder(img, 30, 30, 30, 30, cv2.BORDER_CONSTANT, value = (255,255,255))
 imgray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 gray=np.float32(imgray)
