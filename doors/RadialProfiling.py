@@ -2,10 +2,10 @@ import cv2
 import numpy as np
 import random
 import math
+import interpoltest
 
 
-
-img=cv2.imread('Doors.jpg')
+img=cv2.imread('Rotated.jpg')
 img = cv2.copyMakeBorder(img, 30, 30, 30, 30, cv2.BORDER_CONSTANT, value = (255,255,255))
 imgray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 gray=np.float32(imgray)
@@ -59,7 +59,14 @@ def pltCont(img, cont):
 	return diff[:,:,::-1]
 
 def drawRadialProfile(fname, cont):
-	x,y = getRadialProfile(cont)
+	x,y = getRadialProfile(cont)  #x is cNum list, y is rDist list
+
+	#debug for console
+	# print(fname, x, y)
+	b = interpoltest.isADoor(x,y)
+	print(fname)
+	if(b):
+		print(fname, "is a door")
 	import matplotlib.pyplot as plt
 	plt.subplot(2,1,1)
 	plt.plot(x, y, 'o-')
