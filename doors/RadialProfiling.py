@@ -5,7 +5,7 @@ import math
 import interpoltest
 
 
-img=cv2.imread('tilted.jpg')
+img=cv2.imread('door_test_cs.jpg')
 img = cv2.copyMakeBorder(img, 30, 30, 30, 30, cv2.BORDER_CONSTANT, value = (255,255,255))
 imgray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 gray=np.float32(imgray)
@@ -79,7 +79,7 @@ def drawRadialProfile(fname, cont):
 idx = 0
 for contour in contours[1:]:
 	# hulls = cv2.convexHull(contour)
-	epsilon = 0.008*cv2.arcLength(contour,True)
+	epsilon = 0.01*cv2.arcLength(contour,True)
 	hulls = cv2.approxPolyDP(contour,epsilon,True)
 	k=[random.randint(0,255),random.randint(0,255),random.randint(0,255)]
 	r=tuple(k)
