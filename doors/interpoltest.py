@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import interp1d
 import scipy.stats as ss
@@ -8,11 +8,13 @@ import random
 #template
 # x = [0.0, 0.14285714285714285, 0.2857142857142857, 0.42857142857142855, 0.5714285714285714, 0.7142857142857143, 0.8571428571428571]
 # y = [0.47251887927832953, 0.6810175786242851, 0.8970394779234148, 1.0, 0.7647218447684332, 0.9441395458321341, 0.6121627518846883]
+i=0
+
 x = [0.0, 0.16666666666666666, 0.3333333333333333, 0.5, 0.6666666666666666, 0.8333333333333334]
 y = [0.5655635393401837, 0.7010303366963042, 1.0, 0.8267919673013999, 0.9957149401743088, 0.7202016998896072]
 
-templateArr = np.divide(x,y) #combining x and y
-print(templateArr)
+# templateArr = np.divide(x,y) #combining x and y
+# print(templateArr)
 
 #door
 x2 = [0.0, 0.16666666666666666, 0.3333333333333333, 0.5, 0.6666666666666666, 0.8333333333333334]
@@ -81,7 +83,7 @@ def getNewXAndY(x,y, points):
 
 def isADoor(contX, contY):
 	contXNew, contYNew = getNewXAndY(contX, contY, len(x))
-	contArr = np.divide(contXNew, contYNew)
+	# contArr = np.divide(contXNew, contYNew)
 	# print(contArr)
 	# corr = ssd.correlation(ynew, contYNew)
 	# spear = ss.spearmanr(ynew, contYNew)
@@ -102,12 +104,15 @@ def isADoor(contX, contY):
 	spear = ss.spearmanr(deltaY, contDeltaY)
 	pearson = np.correlate(deltaY, contDeltaY, mode='valid')
 
-	print(corr, corr**2,spear, pearson),
+	# print(corr, corr**2,spear, pearson),
 	# plt.figure()
 	# plt.plot(x, y, 'r', contXNew, contYNew, 'g')
-	plt.plot(deltaX, deltaY, 'r', contDeltaX, contDeltaY, 'g')
-	plt.show()
-	plt.clf()
+	# plt.plot(deltaX, deltaY, 'r', contDeltaX, contDeltaY, 'g')
+	# plt.show()
+	# global i
+	# plt.savefig("RadialProfiles/GraphComp"+str(i)+".png")
+	# i += 1
+	# plt.clf()
 	return corr < 0.1
 
 # print(isADoor(ynew, ynew3))

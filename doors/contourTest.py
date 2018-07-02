@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import random
 
-img=cv2.imread('Doors.jpg')
+img=cv2.imread('window_cs.jpg')
 imgray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 gray=np.float32(imgray)
 
@@ -12,9 +12,9 @@ im2, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APP
 
 lines = []
 for contour in contours[1:]:
-	hulls = cv2.convexHull(contour)
-	# epsilon = 0.01*cv2.arcLength(contour,True)
-	# hulls = cv2.approxPolyDP(contour,epsilon,True)
+	# hulls = cv2.convexHull(contour)
+	epsilon = 0.03*cv2.arcLength(contour,True)
+	hulls = cv2.approxPolyDP(contour,epsilon,True)
 	k=[random.randint(0,255),random.randint(0,255),random.randint(0,255)]
 	r=tuple(k)
 
